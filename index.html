@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HACKLENDİNİZ</title>
+  <style>
+    :root{
+      --bg:#0D0C1D;
+      --accent:#FF5252;
+      --muted:#FFD7D7;
+      --card:#0F0E20;
+    }
+
+    *{box-sizing:border-box}
+    body,html{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--accent);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+    }
+
+    /* Üst bölüm: merkezi kart */
+    .hero{
+      min-height:80vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 16px 20px;
+      text-align:center;
+      position:relative;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,82,82,0.04), rgba(255,82,82,0.02));
+      padding:28px;
+      border-radius:16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      max-width:920px;
+      width:100%;
+      display:flex;
+      gap:28px;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+    }
+
+    h1{
+      margin:0;
+      font-weight:900;
+      letter-spacing:2px;
+      font-size:clamp(2.4rem, 7vw, 5rem);
+      color:var(--accent);
+    }
+
+    .gif{
+      width:min(260px, 42%);
+      border-radius:12px;
+      display:block;
+    }
+
+    /* aşağı kaydır işareti */
+    .scroll-hint{
+      position:absolute;
+      bottom:18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:8px;
+      left:50%;
+      transform:translateX(-50%);
+      color:var(--muted);
+      font-size:0.9rem;
+    }
+    .arrow{
+      width:28px;
+      height:28px;
+      border-left:3px solid var(--muted);
+      border-bottom:3px solid var(--muted);
+      transform:rotate(-45deg);
+      animation: bounce 1.2s infinite;
+    }
+    @keyframes bounce{
+      0%{transform:translateY(0) rotate(-45deg)}
+      50%{transform:translateY(8px) rotate(-45deg)}
+      100%{transform:translateY(0) rotate(-45deg)}
+    }
+
+    /* Reveal bölümü */
+    .reveal-section{
+      min-height:40vh;
+      padding:48px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:transparent;
+    }
+
+    .reveal-card{
+      max-width:880px;
+      width:100%;
+      background:linear-gradient(180deg, rgba(15,14,32,0.7), rgba(15,14,32,0.9));
+      border-radius:14px;
+      padding:28px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.6);
+      color:var(--muted);
+      transform: translateY(30px);
+      opacity:0;
+      transition: transform 600ms cubic-bezier(.22,.9,.3,1), opacity 600ms ease;
+    }
+
+    .reveal-card.visible{
+      transform: translateY(0);
+      opacity:1;
+    }
+
+    .reveal-card h2{
+      margin:0 0 8px 0;
+      color:var(--accent);
+      font-size:clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .reveal-card p{
+      margin:0 0 16px 0;
+      line-height:1.5;
+      color:#F6DCDC;
+      font-size:1rem;
+    }
+
+    .cta{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:10px;
+      background:var(--accent);
+      color:#111;
+      font-weight:700;
+      text-decoration:none;
+      box-shadow: 0 6px 18px rgba(255,82,82,0.12);
+    }
+
+    /* ufak ekran düzenlemeleri */
+    @media (max-width:760px){
+      .card{gap:14px;padding:20px}
+      .gif{width:48%}
+      .reveal-card{padding:20px}
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <section class="hero" aria-labelledby="hack-title">
+      <div class="card" role="region" aria-label="Hacklendiniz bildirimi">
+        <h1 id="hack-title">HACKLENDİNİZ</h1>
+        <img class="gif" src="tenor.gif" alt="Şaka GIF'i — Hacklendiniz" />
+      </div>
+
+      <div class="scroll-hint" aria-hidden="true">
+        <div class="arrow" role="img" aria-label="Aşağı kaydır"></div>
+        <div>Aşağı kaydır</div>
+      </div>
+    </section>
+
+    <section class="reveal-section" id="reveal">
+      <div class="reveal-card" id="revealCard" role="region" aria-live="polite">
+        <h2>Böyle durumlarla yaşamamak için</h2>
+        <p>
+          Bu tür “hacklendiniz” sürprizleri hem korkutucu hem kafa karıştırıcı olabilir. 
+          Daha fazla bilgi, önleyici yöntemler ve canlı demo için standımızda sizi bekliyoruz.
+        </p>
+        <a class="cta" href="#stand" id="ctaBtn">Standımıza gel</a>
+      </div>
+    </section>
+
+    <!-- opsiyonel: stand detayları -->
+    <section style="padding:28px 20px; max-width:900px; margin:0 auto" id="stand">
+      <h3 style="color:var(--muted); margin-top:0">Stand Bilgisi (örnek)</h3>
+      <p style="color:#F6DCDC; margin:0 0 8px 0">Stand: Güvenlik & Farkındalık / Konum: Fuaye — Daha fazlasını ekleyebilirsin.</p>
+    </section>
+  </main>
+
+  <script>
+    // IntersectionObserver ile ortaya çıkarma
+    const revealCard = document.getElementById('revealCard');
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          revealCard.classList.add('visible');
+        } else {
+          // istersen geri gizle; genelde bir kez göster yeter, ama bırakıyorum:
+          // revealCard.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.25 });
+
+    io.observe(document.getElementById('reveal'));
+
+    // CTA butonuna tıklandığında küçük animasyon + fokus
+    document.getElementById('ctaBtn').addEventListener('click', (ev) => {
+      // örnek: smooth scroll ile stand kısmına götürür (halihazırda anchor var)
+      // burada ekstra bir şey yapma.
+    });
+  </script>
+</body>
+</html>
+
+</body>
+</html>
